@@ -1,6 +1,9 @@
 #!/usr/bin/python
 
-# This is our python ledcube script based on the cube:bit sources.
+# This is the "neocube" script "sw_cube.py" based on the python port "cubebit.py".
+# The python script works on Raspberry Pi 2/3/B/+ with the "cubebit.py" python port for slices based on 4tronix neopixel cubes.
+# It's just a sample to demo what's possible under use of our development "swc.py".
+# "swc.py" is our own class symplifing squares and cubes.
 
 # author        : Swen Hopfe
 # created       : 19-03-21
@@ -175,27 +178,6 @@ cbs.purplerain()
 cb.rainbow()
 cb.show()
 time.sleep(3)
-
-cb.clear() 
-
-cbs.slice(0, 0, 1, 2, 2, white)
-cbs.slice(0, 1, 1, 2, 2, yellow)
-cb.show()
-time.sleep(5)
-
-cb.clear() 
-
-cbs.square(1, 0, 1, 2, 3, grey1)
-cbs.square(1, 1, 1, 2, 3, yellow)
-cb.show()
-time.sleep(5)
-
-cb.clear() 
-
-cbs.fcube(0, 0, 0, side, blue)
-cbs.fcube(0, 1, 2, 3, yellow)
-cb.show()
-time.sleep(5)
 
 cb.clear() 
 
