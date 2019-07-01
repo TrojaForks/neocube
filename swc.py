@@ -1,3 +1,12 @@
+#!/usr/bin/python
+
+# This is our "swc" class working together with "sw_cube.py" based on the python port "cubebit.py".
+# Just use "sw_cube.py" to see what's possible.
+
+# author        : Swen Hopfe
+# created       : 19-03-21
+# last modified : 19-07-01
+
 #--------------------------------------------------------------------------------
 
 import cubebit as cb
