@@ -3,6 +3,7 @@
 # Install that following the instructions here: https://learn.adafruit.com/neopixels-on-raspberry-pi/software
 # Cube:Bit available from shop.4tronix.co.uk
 
+
 from rpi_ws281x import *
 
 # Global settings
