@@ -1,13 +1,13 @@
 #!/usr/bin/python
 
-# This is the "neocube" script "sw_cube.py" based on the python port "cubebit.py".
-# The python script works on Raspberry Pi 2/3/B/+ with the "cubebit.py" python port for slices based on 4tronix neopixel cubes.
-# It's just a sample to demo what's possible under use of our development "swc.py".
-# "swc.py" is our own class symplifing squares and cubes.
+# This is the "neocube"script sw_cube.py based on the python port cubebit.py.
+# The python script works on any newer Raspberry Pi (and RPi Zero 1 and 2) with the cubebit.py python port for slices based on 4tronix neopixel cubes.
+# It's just a sample to demo what's possible under use of our development swc.py.
+# swc.py is our own class much more symplifing squares and cubes.
 
 # author        : Swen Hopfe
 # created       : 19-03-21
-# last modified : 19-07-01
+# last modified : 22-02-10
 
 #--------------------------------------------------------------------------------
 
