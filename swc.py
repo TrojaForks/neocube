@@ -1,11 +1,11 @@
 #!/usr/bin/python
 
-# This is our swc class working together with sw_cube.py based on the python port cubebit.py.
-# Just use sw_cube.py to see what's possible.
+# This is our "swc" class working together with "sw_cube.py" based on the python port "cubebit.py".
+# Just use "sw_cube.py" to see what's possible.
 
 # author        : Swen Hopfe
-# created       : 19-03-21
-# last modified : 22-02-10
+# created       : 22-01-10
+# last modified : 22-02-18
 
 #--------------------------------------------------------------------------------
 
@@ -36,10 +36,10 @@ def init (lside=3):
 
 def line(ori,ko1,ko2,st,le,cl):
 
-#    # # # # #  
+#    # # # # #
 #    ko1=y ko2=z   Linie in x-Richtung
 
-  if ori == 0:  
+  if ori == 0:
      for x in range(le):
         cb.setPixel(cb.map((side-x-st-1), ko2, ko1),cl)
 
@@ -53,7 +53,7 @@ def line(ori,ko1,ko2,st,le,cl):
          cb.setPixel(cb.map((side-ko1-1), ko2, (z+st)),cl)
 
 #      #
-#     #  
+#     #
 #    #  ko2=y      Linie in z-Richtung
 # ko1=x
 
@@ -71,14 +71,14 @@ def slice(ori,lev,st1,st2,le,cl):
 #    # # # # #  lev
 #    # # # # #
 
-  if ori == 0:  
+  if ori == 0:
      for y in range(le):
        for x in range(le):
          cb.setPixel(cb.map((side-x-st1-1), (y+st2), lev),cl)
 
 #   # # st2
 #   # # st1
-#   # # 
+#   # #
 #   lev
 
   elif ori == 1:
@@ -87,7 +87,7 @@ def slice(ori,lev,st1,st2,le,cl):
          cb.setPixel(cb.map((side-lev-1), (y+st2), (z+st1)),cl)
 
 #     # # lev
-#   # # 
+#   # #
 #   # # st2
 #   st1
 
@@ -106,7 +106,7 @@ def square(ori,lev,st1,st2,le,cl):
 #    # # # # #  lev
 #    # # # # #
 
-  if ori == 0:  
+  if ori == 0:
      for x in 0,(le-1):
        for y in range(le-2):
          cb.setPixel(cb.map((side-x-st1-1), (y+1+st2), lev),cl)
@@ -116,7 +116,7 @@ def square(ori,lev,st1,st2,le,cl):
 
 #   # # st2
 #   # # st1
-#   # # 
+#   # #
 #   lev
 
   elif ori == 1:
@@ -128,7 +128,7 @@ def square(ori,lev,st1,st2,le,cl):
          cb.setPixel(cb.map((side-lev-1), (y+st2), (z+st1)),cl)
 
 #     # # lev
-#   # # 
+#   # #
 #   # # st2
 #   st1
 
@@ -153,7 +153,156 @@ def fcube(ox, oy, oz, le, cl):
 
 #-----------------------------------------------------------
 
-# from "purplerain", out of original examples for the "cube:bit" library 
+# setpix(x, y, z, cl)
+# cl - color
+# (x=0, y=0, z=0) is bottom, left, front
+#
+#   4 #       #
+#     #     # 4
+#     #   #
+#     # #
+#   0 # # # # #
+#   0 0       4
+
+def setpix(nx, ny, nz, cl):
+
+   cb.setPixel(cb.map((side-1-nx), (nz), (ny)),cl)
+
+#-----------------------------------------------------------
+
+# number "0"
+# dp - Deepness (move in z-direction)
+
+def n_0(dp, cl):
+
+   line(1, 1, dp, 0, 5, cl)
+   line(1, 3, dp, 0, 5, cl)
+   setpix(2, 0, dp, cl)
+   setpix(2, 4, dp, cl)
+
+#-----------------------------------------------------------
+
+# number "1"
+
+def n_1(dp, cl):
+
+   line(1, 2, dp, 0, 5, cl)
+   setpix(1, 3, dp, cl)
+
+#-----------------------------------------------------------
+
+# number "2"
+
+def n_2(dp, cl):
+
+   line(0, 0, dp, 1, 3, cl)
+   line(0, 2, dp, 1, 3, cl)
+   line(0, 4, dp, 1, 3, cl)
+   setpix(1, 1, dp, cl)
+   setpix(3, 3, dp, cl)
+
+#-----------------------------------------------------------
+
+# number "3"
+
+def n_3(dp, cl):
+
+   line(0, 0, dp, 1, 3, cl)
+   line(0, 2, dp, 2, 2, cl)
+   line(0, 4, dp, 1, 3, cl)
+   setpix(3, 1, dp, cl)
+   setpix(3, 3, dp, cl)
+
+#-----------------------------------------------------------
+
+# number "4"
+
+def n_4(dp, cl):
+
+   line(1, 1, dp, 2, 3, cl)
+   line(1, 3, dp, 0, 5, cl)
+   setpix(2, 2, dp, cl)
+
+#-----------------------------------------------------------
+
+# number "5"
+
+def n_5(dp, cl):
+
+   line(0, 0, dp, 1, 3, cl)
+   line(0, 2, dp, 1, 3, cl)
+   line(0, 4, dp, 1, 3, cl)
+   setpix(1, 3, dp, cl)
+   setpix(3, 1, dp, cl)
+
+#-----------------------------------------------------------
+
+# number "6"
+
+def n_6(dp, cl):
+
+   line(0, 0, dp, 1, 3, cl)
+   line(0, 2, dp, 1, 3, cl)
+   line(0, 4, dp, 1, 2, cl)
+   setpix(1, 1, dp, cl)
+   setpix(1, 3, dp, cl)
+   setpix(3, 1, dp, cl)
+
+#-----------------------------------------------------------
+
+# number "7"
+
+def n_7(dp, cl):
+
+   line(0, 4, dp, 1, 3, cl)
+   line(1, 1, dp, 0, 2, cl)
+   setpix(2, 2, dp, cl)
+   setpix(3, 3, dp, cl)
+
+#-----------------------------------------------------------
+
+# number "8"
+
+def n_8(dp, cl):
+
+   line(1, 1, dp, 0, 5, cl)
+   line(1, 3, dp, 0, 5, cl)
+   setpix(2, 0, dp, cl)
+   setpix(2, 2, dp, cl)
+   setpix(2, 4, dp, cl)
+
+#-----------------------------------------------------------
+
+# number "9"
+
+def n_9(dp, cl):
+
+   line(1, 1, dp, 2, 3, cl)
+   line(1, 3, dp, 0, 5, cl)
+   setpix(2, 0, dp, cl)
+   setpix(2, 2, dp, cl)
+   setpix(2, 4, dp, cl)
+
+#-----------------------------------------------------------
+
+# number
+
+def number(num, dp, cl):
+
+  if num == 0: n_0(dp, cl)
+  if num == 1: n_1(dp, cl)
+  if num == 2: n_2(dp, cl)
+  if num == 3: n_3(dp, cl)
+  if num == 4: n_4(dp, cl)
+  if num == 5: n_5(dp, cl)
+  if num == 6: n_6(dp, cl)
+  if num == 7: n_7(dp, cl)
+  if num == 8: n_8(dp, cl)
+  if num == 9: n_9(dp, cl)
+
+#-----------------------------------------------------------
+
+# from "purplerain", out of original examples for the "cube:bit" library
 
 side2 = side*side
 rain = cb.fromRGB(128,0,128)
