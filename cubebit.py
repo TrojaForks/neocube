@@ -65,7 +65,7 @@ def rainbow():
         for z in range(side):
                 for y in range(side):
                         for x in range(side):
-                                setPixel(map(x,y,z), wheel(i * 256 / side3))
+                                setPixel(map(x,y,z), wheel(int(i * 256 / side3)))
                                 i += 1
 
 def fromRGB(red, green, blue):
@@ -100,5 +100,8 @@ def setPlane(plane, axis, color):
                                 setPixel(map(x, y, plane), color)
 
 
-                
+
+def numPixels():
+    return side*side2
+
 

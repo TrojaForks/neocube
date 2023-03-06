@@ -169,6 +169,8 @@ def setpix(nx, ny, nz, cl):
    cb.setPixel(cb.map((side-1-nx), (nz), (ny)),cl)
 
 #-----------------------------------------------------------
+# vertical
+#-----------------------------------------------------------
 
 # number "0"
 # dp - Deepness (move in z-direction)
@@ -284,9 +286,113 @@ def n_9(dp, cl):
    setpix(2, 4, dp, cl)
 
 #-----------------------------------------------------------
+# horizontal
+#-----------------------------------------------------------
+# h_number "0"
+
+def h_n_0(dp, cl):
+
+   line(2, 1, dp, 0, 5, cl)
+   line(2, 3, dp, 0, 5, cl)
+   setpix(2, dp, 0, cl)
+   setpix(2, dp, 4, cl)
+
+#-----------------------------------------------------------
+# h_number "1"
+
+def h_n_1(dp, cl):
+
+   line(2, 2, dp, 0, 5, cl)
+   setpix(1, dp, 3, cl)
+
+#-----------------------------------------------------------
+# h_number "2"
+
+def h_n_2(dp, cl):
+
+   line(2, 0, dp, 1, 3, cl)
+   line(2, 2, dp, 1, 3, cl)
+   line(2, 4, dp, 1, 3, cl)
+   setpix(1, dp, 1, cl)
+   setpix(3, dp, 3, cl)
+
+#-----------------------------------------------------------
+# h_number "3"
+
+def h_n_3(dp, cl):
+
+   line(2, 0, dp, 1, 3, cl)
+   line(2, 2, dp, 2, 2, cl)
+   line(2, 4, dp, 1, 3, cl)
+   setpix(1, dp, 3, cl)
+   setpix(3, dp, 3, cl)
+
+#-----------------------------------------------------------
+# h_number "4"
+
+def h_n_4(dp, cl):
+
+   line(2, 1, dp, 2, 3, cl)
+   line(2, 3, dp, 0, 5, cl)
+   setpix(2, dp, 2, cl)
+
+#-----------------------------------------------------------
+# h_number "5"
+
+def h_n_5(dp, cl):
+
+   line(2, 0, dp, 1, 3, cl)
+   line(2, 2, dp, 1, 3, cl)
+   line(2, 4, dp, 1, 3, cl)
+   setpix(1, dp, 3, cl)
+   setpix(3, dp, 1, cl)
+
+#-----------------------------------------------------------
+# h_number "6"
+
+def h_n_6(dp, cl):
+
+   line(2, 0, dp, 1, 3, cl)
+   line(2, 2, dp, 1, 3, cl)
+   line(2, 4, dp, 1, 2, cl)
+   setpix(1, dp, 1, cl)
+   setpix(1, dp, 3, cl)
+   setpix(3, dp, 1, cl)
+
+#-----------------------------------------------------------
+# h_number "7"
+
+def h_n_7(dp, cl):
+
+   line(2, 4, dp, 1, 3, cl)
+   line(2, 1, dp, 0, 2, cl)
+   setpix(2, dp, 2, cl)
+   setpix(3, dp, 3, cl)
+
+#-----------------------------------------------------------
+# h_number "8"
+
+def h_n_8(dp, cl):
+
+   line(2, 1, dp, 0, 5, cl)
+   line(2, 3, dp, 0, 5, cl)
+   setpix(2, dp, 0, cl)
+   setpix(2, dp, 2, cl)
+   setpix(2, dp, 4, cl)
+
+#-----------------------------------------------------------
+# h_number "9"
+
+def h_n_9(dp, cl):
+
+   line(2, 1, dp, 2, 3, cl)
+   line(2, 3, dp, 0, 5, cl)
+   setpix(2, dp, 0, cl)
+   setpix(2, dp, 2, cl)
+   setpix(2, dp, 4, cl)
+
 
 # number
-
 def number(num, dp, cl):
 
   if num == 0: n_0(dp, cl)
@@ -299,6 +405,20 @@ def number(num, dp, cl):
   if num == 7: n_7(dp, cl)
   if num == 8: n_8(dp, cl)
   if num == 9: n_9(dp, cl)
+
+# h_number
+def h_number(num, dp, cl):
+
+  if num == 0: h_n_0(dp, cl)
+  if num == 1: h_n_1(dp, cl)
+  if num == 2: h_n_2(dp, cl)
+  if num == 3: h_n_3(dp, cl)
+  if num == 4: h_n_4(dp, cl)
+  if num == 5: h_n_5(dp, cl)
+  if num == 6: h_n_6(dp, cl)
+  if num == 7: h_n_7(dp, cl)
+  if num == 8: h_n_8(dp, cl)
+  if num == 9: h_n_9(dp, cl)
 
 #-----------------------------------------------------------
 
@@ -350,4 +470,100 @@ def purplerain():
             time.sleep(0.2)
         time.sleep(1)
 
+
+def col_rain(rain):
+
+    cb.clear()
+    cb.setPlane(side-1, 2, rain)
+    cb.show()
+    time.sleep(1)
+    cb.setColor(white)
+    cb.show()
+    time.sleep(0.05)
+    cb.clear()
+    cb.setPlane(side-1,2,rain)
+    cb.show()
+    for i in range(side2):
+        cloud[i] = 0
+    for k in range(side2):
+        x = random.randint(0,side-1)
+        y = random.randint(0,side-1)
+        while (cloud[x+y*side] != 0):
+            x = random.randint(0,side-1)
+            y = random.randint(0,side-1)
+        cloud[x + y*side] = 1
+        for i in range(side-1):
+            cb.setPixel(cb.map(x,y,side-1-i), 0)
+            cb.setPixel(cb.map(x,y,side-2-i), rain)
+            cb.show()
+            time.sleep(0.2)
+    time.sleep(1)
+    for y in range(side-1):
+        for x in range(side):
+            cb.setPixel(cb.map(x, side-y-1, 0), 0)
+            cb.setPixel(cb.map(x, 0, y+1), rain)
+        cb.show()
+        time.sleep(0.2)
+    for y in range(side-1):
+        for x in range(side):
+            cb.setPixel(cb.map(x, 0, y), 0)
+            cb.setPixel(cb.map(x, y+1, side-1), rain)
+        cb.show()
+        time.sleep(0.2)
+    time.sleep(1)
+
+
 #--------------------------------------------------------------------------------
+# ../rpi-ws281x-python/examples/strandtest.py
+
+# Define functions which animate LEDs in various ways.
+def colorWipe(color, wait_ms=50):
+    """Wipe color across display a pixel at a time."""
+    for i in range(cb.numPixels()):
+        cb.setPixel(i, color)
+        cb.show()
+        time.sleep(wait_ms / 1000.0)
+
+
+def theaterChase(color, wait_ms=50, iterations=10):
+    """Movie theater light style chaser animation."""
+    for j in range(iterations):
+        for q in range(3):
+            for i in range(0, cb.numPixels(), 3):
+                cb.setPixel(i + q, color)
+            cb.show()
+            time.sleep(wait_ms / 1000.0)
+            for i in range(0, cb.numPixels(), 3):
+                cb.setPixel(i + q, 0)
+
+
+def rainbow_lin(wait_ms=20, iterations=1):
+    """Draw rainbow that fades across all pixels at once."""
+    for j in range(256 * iterations):
+        for i in range(cb.numPixels()):
+            cb.setPixel(i, cb.wheel((i + j) & 255))
+        cb.show()
+        time.sleep(wait_ms / 1000.0)
+
+
+def rainbowCycle(wait_ms=20, iterations=5):
+    """Draw rainbow that uniformly distributes itself across all pixels."""
+    for j in range(256 * iterations):
+        for i in range(cb.numPixels()):
+            cb.setPixel(i, cb.wheel(
+                (int(i * 256 / cb.numPixels()) + j) & 255))
+        cb.show()
+        time.sleep(wait_ms / 1000.0)
+
+
+def theaterChaseRainbow(wait_ms=50):
+    """Rainbow movie theater light style chaser animation."""
+    for j in range(256):
+        for q in range(3):
+            for i in range(0, cb.numPixels(), 3):
+                cb.setPixel(i + q, cb.wheel((i + j) % 255))
+            cb.show()
+            time.sleep(wait_ms / 1000.0)
+            for i in range(0, cb.numPixels(), 3):
+                cb.setPixel(i + q, 0)
+
